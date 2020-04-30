@@ -1,0 +1,84 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Укажите вид животного: \n(cat - кот, dog - собака)");
+        switch (sc.nextLine()) {
+            case "dog":
+                Dog sobanya = new Dog();
+                System.out.println("Укажите, сколько метров должна пробежать собака:");
+                sobanya.run(sc.nextFloat());
+                System.out.println("Укажите, сколько метров должна проплыть собака:");
+                sobanya.swim(sc.nextFloat());
+                System.out.println("Укажите, на сколько метров должна прыгнуть собака:");
+                sobanya.jump(sc.nextFloat());
+                break;
+            case "cat":
+                Cat kote = new Cat();
+                System.out.println("Укажите, сколько метров должен пробежать кот:");
+                kote.run(sc.nextFloat());
+                System.out.println("Укажите, сколько метров должен проплыть кот:");
+                kote.swim(sc.nextFloat());
+                System.out.println("Укажите, на сколько метров должен прыгнуть кот:");
+                kote.jump(sc.nextFloat());
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+interface Zver{
+    void run(float input);
+    void swim(float input);
+    void jump(float input);
+}
+
+abstract class Animal implements Zver{
+}
+
+class Cat extends Animal{
+    @Override
+    public void run(float input) {
+        if (input <= 200) {
+            System.out.println("Успех! Кот пробежал " + input + " м.");
+        }
+        else System.out.println("Неудача! Кот не сумел пробежать " + input + " м.");
+    }
+    @Override
+    public void swim(float input) {
+        System.out.println("Ошибка! Кот не умеет плавать!");
+    }
+    @Override
+    public void jump(float input) {
+        if (input <= 2) {
+            System.out.println("Успех! Кот прыгнул на " + input + " м.");
+        }
+        else System.out.println("Неудача! Кот не сумел прыгнуть на " + input + " м.");
+    }
+}
+
+class Dog extends Animal{
+    @Override
+    public void run(float input) {
+        if (input <= 500) {
+            System.out.println("Успех! Собака пробежала " + input + " м.");
+        }
+        else System.out.println("Неудача! Собака не сумела пробежать " + input + " м.");
+    }
+    @Override
+    public void swim(float input) {
+        if (input <= 10) {
+            System.out.println("Успех! Собака проплыла " + input + " м.");
+        }
+        else System.out.println("Неудача! Собака не сумела проплыть " + input + " м.");
+    }
+    @Override
+    public void jump(float input) {
+        if (input <= 0.5) {
+            System.out.println("Успех! Собака прыгнула на " + input + " м.");
+        }
+        else System.out.println("Неудача! Собака не сумела прыгнуть на " + input + " м.");
+    }
+}
